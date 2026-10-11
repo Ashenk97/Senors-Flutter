@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
@@ -10,20 +9,19 @@ class accelerometerData extends StatefulWidget {
 
 // ignore: camel_case_types
 class _accelerometerData extends State<accelerometerData> {
-  double x, y, z;
-  String text;
+  double x = 0, y = 0, z = 0;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    accelerometerEvents.listen((AccelerometerEvent event) {
+    accelerometerEventStream().listen((AccelerometerEvent event) {
+      if (!mounted) return;
       setState(() {
         x = event.x;
         y = event.y;
         z = event.z;
       });
-    }); //get the sensor data and set then to the data types
+    });
   }
 
   @override

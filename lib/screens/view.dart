@@ -3,14 +3,13 @@ import 'package:sensors_plus/sensors_plus.dart';
 import 'package:flutter_sensors/src/accelerometerData.dart';
 import 'package:flutter_sensors/src/gyroscopeData.dart';
 
-class View extends StatelessWidget {
+class SensorView extends StatelessWidget {
   final String userName;
-  final AccelerometerEvent x;
-  final AccelerometerEvent y;
-  final AccelerometerEvent z;
+  final AccelerometerEvent? x;
+  final AccelerometerEvent? y;
+  final AccelerometerEvent? z;
 
-  View({Key key, @required this.userName, this.x, this.y, this.z})
-      : super(key: key);
+  const SensorView({super.key, required this.userName, this.x, this.y, this.z});
 
   @override
   Widget build(BuildContext context) {

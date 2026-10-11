@@ -40,9 +40,10 @@ class _UserPageState extends State<UserPage> {
                 _sendDataToSecondScreen(context);
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.pink,
-                padding: EdgeInsets.symmetric(horizontal: 70, vertical: 20),
-                textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                backgroundColor: Colors.pink,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 20),
+                textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
           ],
@@ -57,7 +58,7 @@ class _UserPageState extends State<UserPage> {
         context,
         MaterialPageRoute(
           builder: (context) =>
-              View(
+              SensorView(
                 userName: userName,
               ),
         ));
