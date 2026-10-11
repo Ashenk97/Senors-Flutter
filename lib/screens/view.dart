@@ -25,8 +25,7 @@ class SensorView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                child: Expanded(
+              Expanded(
                   flex: 3,
                   child: Column(
                     children: [
@@ -85,7 +84,6 @@ class SensorView extends StatelessWidget {
                       // )
                     ],
                   ),
-                ),
               ),
             ],
           ),

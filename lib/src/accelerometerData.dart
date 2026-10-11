@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
@@ -10,11 +12,12 @@ class accelerometerData extends StatefulWidget {
 // ignore: camel_case_types
 class _accelerometerData extends State<accelerometerData> {
   double x = 0, y = 0, z = 0;
+  StreamSubscription<AccelerometerEvent>? _subscription;
 
   @override
   void initState() {
     super.initState();
-    accelerometerEventStream().listen((AccelerometerEvent event) {
+    _subscription = accelerometerEventStream().listen((AccelerometerEvent event) {
       if (!mounted) return;
       setState(() {
         x = event.x;
@@ -22,6 +25,12 @@ class _accelerometerData extends State<accelerometerData> {
         z = event.z;
       });
     });
+  }
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
+    super.dispose();
   }
 
   @override

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
@@ -10,11 +12,12 @@ class gyroscopeData extends StatefulWidget {
 // ignore: camel_case_types
 class _gyroscopeData extends State<gyroscopeData> {
   double x = 0, y = 0, z = 0;
+  StreamSubscription<GyroscopeEvent>? _subscription;
 
   @override
   void initState() {
     super.initState();
-    gyroscopeEventStream().listen((GyroscopeEvent event) {
+    _subscription = gyroscopeEventStream().listen((GyroscopeEvent event) {
       if (!mounted) return;
       setState(() {
         x = event.x;
@@ -22,6 +25,12 @@ class _gyroscopeData extends State<gyroscopeData> {
         z = event.z;
       });
     });
+  }
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
+    super.dispose();
   }
 
   @override
